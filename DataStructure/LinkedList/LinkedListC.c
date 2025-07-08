@@ -1,11 +1,19 @@
-﻿#include "LinkedListC.h"
-#include <stdio.h>
+﻿#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#include "LinkedListC.h"
+
 
 // 노드 추가시 자동으로 Apppend
 Node* CreateNode(LinkedList* list, const char* name, int hp)
 {
     Node* NewNode = (Node*)malloc(sizeof(Node));
-    strcpy_s(NewNode->name, NAME_MAX_LEN, name);
+    //strcpy_s(NewNode->name, NAME_MAX_LEN, name);  // VSCODE에서는 해당 함수 지원안함
+
+
+    strncpy(NewNode->name, name, NAME_MAX_LEN - 1);
+    NewNode->name[NAME_MAX_LEN - 1] = '\0';
     NewNode->Hp = hp; 
     NewNode->pNext = NULL;
 
@@ -57,7 +65,7 @@ void DestroyList(LinkedList* list)
 
 
 //  노드 삽입 
-void  Insert(LinkedList* list, Node* target, char* name, int hp)
+void  Insert(LinkedList* list, Node* target, const char* name, int hp)
 {
     Node* element = list->pHead;
     Node* previous = NULL;
