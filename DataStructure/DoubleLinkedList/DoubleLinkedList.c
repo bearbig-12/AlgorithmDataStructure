@@ -1,5 +1,7 @@
 ﻿#include "DoubleLinkedList.h"
 
+int mCount = 0;
+
 //  노드 생성 
 Node* CreateNode(ElementType newData)
 {
@@ -8,7 +10,7 @@ Node* CreateNode(ElementType newData)
     newNode->Data = newData;
     newNode->prevNode = NULL;
     newNode->nextNode = NULL;
-
+    mCount++;
     return newNode;
 }
 
@@ -25,6 +27,7 @@ void AppendNode(Node** head, Node* newNode)
     if ((*head) == NULL)
     {
         *head = newNode;
+
     }
     else
     {
@@ -36,6 +39,7 @@ void AppendNode(Node** head, Node* newNode)
         tail->nextNode = newNode;
         newNode->prevNode = tail;
 
+
     }
 }
 
@@ -44,11 +48,13 @@ void InsertAfter(Node* current, Node* newNode)
 {
     newNode->nextNode = current->nextNode;
     newNode->prevNode = current;
+
     // 중간 삽입
     if (current->nextNode != NULL)
     {
         current->nextNode->prevNode = newNode;
         current->nextNode = newNode;
+
     }
 }
 
@@ -64,6 +70,8 @@ void RemoveNode(Node** head, Node* remove)
         }
         remove->nextNode = NULL;
         remove->prevNode = NULL;
+        mCount--;
+
     }
     else
     {
@@ -79,6 +87,7 @@ void RemoveNode(Node** head, Node* remove)
 
         remove->prevNode = NULL;
         remove->nextNode = NULL;
+        mCount--;
 
     }
 }
@@ -97,18 +106,9 @@ Node* GetNodeAt(Node* head, int location)
 }
 
 //  노드 개수 세기 
-int GetNodeCount(Node* head)
+int GetNodeCount()
 {
-    unsigned int  count = 0;
-    Node* current = head;
-
-    while (current != NULL)
-    {
-        current = current->nextNode;
-        count++;
-    }
-
-    return count;
+    return mCount;
 }
 
 // 노드 출력
@@ -125,4 +125,20 @@ void PrintNode(Node* _node)
         printf("Next: NULL\n");
     else
         printf("Next: %d\n", _node->nextNode->Data);
+}
+
+void InsertNewHead(Node** head, Node* newNode)
+{
+    if ((*head) == NULL)
+    {
+        (*head) = newNode;
+    }
+    else
+    {
+        newNode->nextNode = (*head);
+        newNode->prevNode = NULL;
+        (*head)->prevNode = newNode;
+        (*head) = newNode;
+    }
+ 
 }
