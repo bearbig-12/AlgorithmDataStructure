@@ -1,6 +1,6 @@
 ﻿#include "DoubleLinkedList.h"
 
-int mCount = 0;
+static int mCount = 0;
 
 //  노드 생성 
 Node* CreateNode(ElementType newData)
@@ -10,7 +10,6 @@ Node* CreateNode(ElementType newData)
     newNode->Data = newData;
     newNode->prevNode = NULL;
     newNode->nextNode = NULL;
-    mCount++;
     return newNode;
 }
 
@@ -41,6 +40,8 @@ void AppendNode(Node** head, Node* newNode)
 
 
     }
+    mCount++;
+
 }
 
 //  노드 삽입 
@@ -56,6 +57,8 @@ void InsertAfter(Node* current, Node* newNode)
         current->nextNode = newNode;
 
     }
+    mCount++;
+
 }
 
 //  노드 제거 
@@ -90,6 +93,8 @@ void RemoveNode(Node** head, Node* remove)
         mCount--;
 
     }
+    mCount--;
+
 }
 
 //  노드 탐색 
@@ -132,13 +137,62 @@ void InsertNewHead(Node** head, Node* newNode)
     if ((*head) == NULL)
     {
         (*head) = newNode;
+
+        newNode->nextNode = NULL;
+        newNode->prevNode = NULL;
     }
     else
     {
         newNode->nextNode = (*head);
-        newNode->prevNode = NULL;
         (*head)->prevNode = newNode;
         (*head) = newNode;
+        newNode->prevNode = NULL;
+
     }
- 
+    mCount++;
+
+}
+
+/*
+void InsertNewHead2(Node** Head, Node* NewHead) {
+
+    // 경우 1: 헤드노드가 없는 경우
+    if ((*Head) == NULL) {
+        *Head = NewHead;
+
+        NewHead->nextNode = NULL;
+        NewHead->prevNode = NULL;
+    }
+    else { // 경우 2. 헤드노드가 있는 경우
+        NewHead->nextNode = (*Head);   // NewHead의 다음노드로 현재의 헤드노드를 연결한다.
+        (*Head)->prevNode = NewHead;   // 현재의 헤드노드의 이전노드로 NewHead의 주소값을 연결한다.
+
+        (*Head) = NewHead; // NewHead를 헤드 노드로 만든다.
+
+        NewHead->prevNode = NULL;
+    }
+
+    mCount++;
+}
+*/
+
+
+
+void InsertBefore(Node** Head, Node* Current, Node* NewNode) 
+{
+    if (Current == (*Head)) 
+    { // 헤드노드인 경우
+        NewNode->nextNode = (*Head);
+        (*Head)->prevNode = NewNode;
+
+        (*Head) = NewNode;
+    }
+    else
+    {
+        NewNode->prevNode = Current->prevNode;
+        NewNode->nextNode = Current;
+
+        NewNode->prevNode->nextNode = NewNode;
+        NewNode->nextNode->prevNode = NewNode;
+    }
 }
