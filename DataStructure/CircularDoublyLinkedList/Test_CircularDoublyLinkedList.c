@@ -1,68 +1,72 @@
 #include "CircularDoublyLinkedList.h"
 
-int main( void )
+int main()
 {
-    int   i       = 0;
-    int   Count   = 0;
-    Node* List    = NULL;
-    Node* NewNode = NULL;
-    Node* Current = NULL;
+	int i = 0;
+	int count = 0;
+	Node* mList = NULL;
+	Node* newNode = NULL;
+	Node* mCurrent = NULL;
 
-    //  ë…¸ë“œ 5ê°œ ì¶”ê°€ 
-    for ( i = 0; i<5; i++ )
+	//  ³ëµå 5°³ Ãß°¡ 
+	for (i = 0; i < 5; i++)
+	{
+		newNode = CreateNode(i);
+		AppendNode(&mList, newNode);
+	}
+
+
+    //  ¸®½ºÆ® Ãâ·Â 
+    count = GetNodeCount(mList);
+    for (i = 0; i < count; i++)
     {
-        NewNode = CreateNode( i );
-        AppendNode( &List,NewNode );
+        mCurrent = GetNodeAt(mList, i);
+        printf("List[%d] : %d\n", i, mCurrent->mData);
     }
 
-    //  ë¦¬ìŠ¤íŠ¸ ì¶œë ¥ 
-    Count = GetNodeCount( List );
-    for ( i = 0; i<Count; i++ )
+    //  ¸®½ºÆ®ÀÇ ¼¼¹øÂ° Ä­ µÚ¿¡ ³ëµå »ğÀÔ 
+    printf("\nInserting 3000 After [2]...\n\n");
+
+    mCurrent = GetNodeAt(mList, 2);
+    newNode = CreateNode(3000);
+    InsertAfter(mCurrent, newNode);
+
+    printf("\nRemoving Node at 2...\n");
+    mCurrent = GetNodeAt(mList, 2);
+    RemoveNode(&mList, mCurrent);
+    DestroyNode(mCurrent);
+
+    //  ¸®½ºÆ® Ãâ·Â  
+    //  (³ëµå ¼öÀÇ 2¹è¸¸Å­ ·çÇÁ¸¦ µ¹¸ç È¯ÇüÀÓÀ» È®ÀÎÇÑ´Ù.) 
+    count = GetNodeCount(mList);
+    for (i = 0; i < count * 2; i++)
     {
-        Current = GetNodeAt( List, i );
-        printf( "List[%d] : %d\n", i, Current->Data );
-    }
-
-    //  ë¦¬ìŠ¤íŠ¸ì˜ ì„¸ë²ˆì§¸ ì¹¸ ë’¤ì— ë…¸ë“œ ì‚½ì… 
-    printf( "\nInserting 3000 After [2]...\n\n" );
-
-    Current = GetNodeAt( List, 2 );
-    NewNode = CreateNode( 3000 );
-    InsertAfter( Current, NewNode );
-
-    printf( "\nRemoving Node at 2...\n" );
-    Current = GetNodeAt( List, 2 );
-    RemoveNode( &List, Current );
-    DestroyNode( Current );
-
-    //  ë¦¬ìŠ¤íŠ¸ ì¶œë ¥  
-    //  (ë…¸ë“œ ìˆ˜ì˜ 2ë°°ë§Œí¼ ë£¨í”„ë¥¼ ëŒë©° í™˜í˜•ì„ì„ í™•ì¸í•œë‹¤.) 
-    Count = GetNodeCount( List );
-    for ( i = 0; i<Count*2; i++ )
-    {
-        if ( i == 0 )
-            Current = List;
+        if (i == 0)
+            mCurrent = mList;
         else
-            Current = Current->NextNode;
-        
-        printf( "List[%d] : %d\n", i, Current->Data );
+            mCurrent = mCurrent->mNextNode;
+
+        printf("List[%d] : %d\n", i, mCurrent->mData);
     }
 
-    //  ëª¨ë“  ë…¸ë“œë¥¼ ë©”ëª¨ë¦¬ì—ì„œ ì œê±°     
-    printf( "\nDestroying List...\n" );
+    //  ¸ğµç ³ëµå¸¦ ¸Ş¸ğ¸®¿¡¼­ Á¦°Å     
+    printf("\nDestroying List...\n");
 
-    Count = GetNodeCount( List );
+    count = GetNodeCount(mList);
 
-    for ( i = 0; i<Count; i++ )
+    for (i = 0; i < count; i++)
     {
-        Current = GetNodeAt( List, 0 );
+        mCurrent = GetNodeAt(mList, 0);
 
-        if ( Current != NULL ) 
+        if (mCurrent != NULL)
         {
-            RemoveNode( &List, Current );
-            DestroyNode( Current );
+            RemoveNode(&mList, mCurrent);
+            DestroyNode(mCurrent);
         }
     }
 
     return 0;
+
+
+
 }

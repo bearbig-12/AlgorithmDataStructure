@@ -6,19 +6,19 @@
 
 typedef int ElementType;
 
-typedef struct tagNode
+typedef struct Node
 {
-    ElementType Data;
-    struct tagNode* PrevNode;
-    struct tagNode* NextNode;
-} Node;
+	ElementType mData;
+	struct Node* mPreNode;
+	struct Node* mNextNode;
+}Node;
 
-Node* CreateNode(ElementType NewData);
-void  DestroyNode(Node* Node);
-void  AppendNode(Node** Head, Node* NewNode);
-void  InsertAfter(Node* Current, Node* NewNode);
-void  RemoveNode(Node** Head, Node* Remove);
-Node* GetNodeAt(Node* Head, int Location);
-int   GetNodeCount(Node* Head);
-
+Node* CreateNode(ElementType newData);
+void DestroyNode(Node* node);
+void AppendNode(Node** head, Node* newNode);
+void InsertAfter(Node* current, Node* newNode);
+void RemoveNode(Node** head, Node* remove);
+Node* GetNodeAt(Node* head, int location);
+int GetNodeCount(Node* head);
+void PrintNode(Node* _Node);
 #endif
