@@ -78,6 +78,7 @@ void Resize(ArrayStack* stack)
 	*/
 
 	Node* newNodes = realloc(stack->Nodes, sizeof(Node) * newCapacity);
+	//stack->Nodes = realloc(stack->Nodes, newCapacity * sizeof(Node)); // 동적배열 재할당.
 
 	// Top 값은 변함 없음
 	stack->mCapacity = newCapacity;
