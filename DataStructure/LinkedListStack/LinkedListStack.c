@@ -33,6 +33,7 @@ Node* CreateNode(char* data)
 	//strcpy_s(newNode->mData, strlen(data) + 1, data); //  데이터를 저장한다. 
 
 	newNode->pNextNode = NULL; // 다음 노드에 대한 포인터는 NULL로 초기화한다. 
+	newNode->pPrevNode = NULL;
 
 
 
@@ -54,6 +55,7 @@ void Push(LinkedListStack* stack, Node* newNode)
 	else
 	{
 		stack->mTop->pNextNode = newNode;
+		newNode->pPrevNode = stack->mTop;
 	}
 	stack->mTop = newNode;
 	++mCount;
@@ -70,15 +72,18 @@ Node* Pop(LinkedListStack* stack)
 	}
 	else
 	{
-		// Top 아래에 있던 노드를 새로운 CurrentTop에 저장 
-		Node* currentTop = stack->mList;
-		while (currentTop != NULL && currentTop->pNextNode != stack->mTop)
-		{
-			currentTop = currentTop->pNextNode;
-		}
-		// CurrentTop을 Top에 저장
-		stack->mTop = currentTop;
-		// 기존에 있던 Top을 Pop 시킴. CurrentTop이 새로운 Top으로
+		//// Top 아래에 있던 노드를 새로운 CurrentTop에 저장 
+		//Node* currentTop = stack->mList;
+		//while (currentTop != NULL && currentTop->pNextNode != stack->mTop)
+		//{
+		//	currentTop = currentTop->pNextNode;
+		//}
+		//// CurrentTop을 Top에 저장
+		//stack->mTop = currentTop;
+		//// 기존에 있던 Top을 Pop 시킴. CurrentTop이 새로운 Top으로
+		//stack->mTop->pNextNode = NULL;
+
+		stack->mTop = stack->mTop->pPrevNode;
 		stack->mTop->pNextNode = NULL;
 	}
 	--mCount;

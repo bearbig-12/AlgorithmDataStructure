@@ -13,6 +13,8 @@ typedef struct tagNode
 {
 	char* mData;
 	struct tagNode* pNextNode;
+	struct tageNode* pPrevNode;
+
 }Node;
 
 typedef struct tagLinkedListStack
