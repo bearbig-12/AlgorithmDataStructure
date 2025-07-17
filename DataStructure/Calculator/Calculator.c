@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+﻿#define _CRT_SECURE_NO_WARNINGS
 
 #include "Calculator.h"
 
@@ -76,12 +76,12 @@ int IsPrior(char OperatorInStack, char OperatorInToken)
 	return (GetPriority(OperatorInStack, 1) > GetPriority(OperatorInToken, 0));
 }
 
-
+// Token은 의미단위소
 void GetPostFix(char* InfixExpression, char* PostfixExpression)
 {
 	LinkedListStack* Stack;
 
-	char Token[32];
+	char Token[32];		// InfixExpression 에서 분리해낸 토큰 저장
 	int  Type = -1;
 	unsigned int Position = 0;
 	unsigned int Length = strlen(InfixExpression);

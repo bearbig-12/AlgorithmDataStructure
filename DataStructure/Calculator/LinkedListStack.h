@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #ifndef LINKEDLIST_STACK_H
 #define LINKEDLIST_STACK_H
 
@@ -19,8 +19,8 @@ typedef struct tagNode
 
 typedef struct tagLinkedListStack
 {
-	Node* mList;	// Çìµå ³ëµå ÁÖ¼Ò°ª
-	Node* mTop;		// ²¿¸® ³ëµå ÁÖ¼Ò°ª
+	Node* mList;	// í—¤ë“œ ë…¸ë“œ ì£¼ì†Œê°’
+	Node* mTop;		// ê¼¬ë¦¬ ë…¸ë“œ ì£¼ì†Œê°’
 
 }LinkedListStack;
 

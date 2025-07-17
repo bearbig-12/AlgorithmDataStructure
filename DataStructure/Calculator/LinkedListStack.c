@@ -1,4 +1,4 @@
-#include "LinkedListStack.h"
+ï»¿#include "LinkedListStack.h"
 
 static int mCount = 0;
 
@@ -24,15 +24,15 @@ Node* CreateNode(char* data)
 	Node* newNode = (Node*)malloc(sizeof(Node));
 	newNode->mData = (char*)malloc(strlen(data) + 1);
 
-	// strcpy <- ÀÌ Ä£±¸ ±×³É ¾²¸é unsafe ¿¡·¯¶ä ¹æÁö ÇÒ·Á¸é strcpy_s ¾²°Å³ª
-	// #define _CRT_SECURE_NO_WARNINGS <- ÀÌ°Å Ãß°¡ÇØÁà¾ß ÇÔ
+	// strcpy <- ì´ ì¹œêµ¬ ê·¸ëƒ¥ ì“°ë©´ unsafe ì—ëŸ¬ëœ¸ ë°©ì§€ í• ë ¤ë©´ strcpy_s ì“°ê±°ë‚˜
+	// #define _CRT_SECURE_NO_WARNINGS <- ì´ê±° ì¶”ê°€í•´ì¤˜ì•¼ í•¨
 	strcpy(newNode->mData, data);
 
 
 
-	//strcpy_s(newNode->mData, strlen(data) + 1, data); //  µ¥ÀÌÅÍ¸¦ ÀúÀåÇÑ´Ù. 
+	//strcpy_s(newNode->mData, strlen(data) + 1, data); //  ë°ì´í„°ë¥¼ ì €ìž¥í•œë‹¤. 
 
-	newNode->pNextNode = NULL; // ´ÙÀ½ ³ëµå¿¡ ´ëÇÑ Æ÷ÀÎÅÍ´Â NULL·Î ÃÊ±âÈ­ÇÑ´Ù. 
+	newNode->pNextNode = NULL; // ë‹¤ìŒ ë…¸ë“œì— ëŒ€í•œ í¬ì¸í„°ëŠ” NULLë¡œ ì´ˆê¸°í™”í•œë‹¤. 
 	newNode->pPrevNode = NULL;
 
 
@@ -72,15 +72,15 @@ Node* Pop(LinkedListStack* stack)
 	}
 	else
 	{
-		//// Top ¾Æ·¡¿¡ ÀÖ´ø ³ëµå¸¦ »õ·Î¿î CurrentTop¿¡ ÀúÀå 
+		//// Top ì•„ëž˜ì— ìžˆë˜ ë…¸ë“œë¥¼ ìƒˆë¡œìš´ CurrentTopì— ì €ìž¥ 
 		//Node* currentTop = stack->mList;
 		//while (currentTop != NULL && currentTop->pNextNode != stack->mTop)
 		//{
 		//	currentTop = currentTop->pNextNode;
 		//}
-		//// CurrentTopÀ» Top¿¡ ÀúÀå
+		//// CurrentTopì„ Topì— ì €ìž¥
 		//stack->mTop = currentTop;
-		//// ±âÁ¸¿¡ ÀÖ´ø TopÀ» Pop ½ÃÅ´. CurrentTopÀÌ »õ·Î¿î TopÀ¸·Î
+		//// ê¸°ì¡´ì— ìžˆë˜ Topì„ Pop ì‹œí‚´. CurrentTopì´ ìƒˆë¡œìš´ Topìœ¼ë¡œ
 		//stack->mTop->pNextNode = NULL;
 
 		stack->mTop = stack->mTop->pPrevNode;
