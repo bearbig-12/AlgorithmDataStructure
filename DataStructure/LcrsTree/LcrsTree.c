@@ -79,12 +79,18 @@ void PrintLevel(LCRSNode* node, int level)
 	}
 	else if (level > 0)
 	{
-		// 자식 노드로 내려가기 (level - 1)
-		PrintLevel(node->LeftChild, level - 1);
+		if (node->LeftChild != NULL)
+		{
+			// 자식 노드로 내려가기 (level - 1)
+			PrintLevel(node->LeftChild, level - 1);
+		}
+	}
+	if (node->RightSibling != NULL)
+	{
+		// 형제 노드는 같은 level
+		PrintLevel(node->RightSibling, level);
 	}
 
-	// 형제 노드는 같은 level
-	PrintLevel(node->RightSibling, level);
 
 
 
@@ -111,3 +117,42 @@ void PrintLevel(LCRSNode* node, int level)
 
 	
 }
+
+void LevelPrintTree(LCRSNode* Tree, int level) 
+{
+	if (level < 0) return;
+
+	if (level == 0) {
+		printf("%c, ", Tree->mData);
+	}
+
+	if (Tree->LeftChild != NULL) {
+		LevelPrintTree(Tree->LeftChild, level - 1);
+	}
+
+	if (Tree->RightSibling != NULL) {
+		LevelPrintTree(Tree->RightSibling, level);
+	}
+}
+
+
+void LevelPrintTree2(LCRSNode* Node, int level, int Depth) 
+{
+	// level과 depth를 매개변수로 받아서 사용하는 방법
+	if (level < Depth) {
+		return;
+	}
+
+	if (Depth == level) {
+		printf("%c ", Node->mData);
+	}
+
+	if (Node->LeftChild != NULL) {
+		LevelPrintTree2(Node->LeftChild, level, Depth + 1);
+	}
+
+	if (Node->RightSibling != NULL) {
+		LevelPrintTree2(Node->RightSibling, level, Depth);
+	}
+}
+
