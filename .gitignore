@@ -13,11 +13,6 @@ x64/
 **/Release/
 **/x64/
 
-## files
-**/*.vcxproj
-**/*.vcxproj.*
-**/*.i
-**/*.obj
 
 # User-specific files
 *.rsuser
