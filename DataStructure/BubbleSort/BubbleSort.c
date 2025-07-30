@@ -1,14 +1,15 @@
 #include <stdio.h>
 #include <stdbool.h>
-
+#include "Score.h"
 
 int main()
 {
-	int DataSet[] = { 1,2,3,4,6, 5 };
-	int arraySize = sizeof(DataSet) / sizeof(int);
-	int temp;
+	//int DataSet[] = { 1,2,3,4,6, 5 };
+	//int arraySize = sizeof(DataSet) / sizeof(int);
+	int arraySize = sizeof(DataSet) / sizeof(DataSet[0]);
+	Score temp;
 
-	for (int i = 0; i < arraySize; ++i)
+	/*for (int i = 0; i < arraySize; ++i)
 	{
 		bool isSorted = true;
 
@@ -27,12 +28,40 @@ int main()
 		{
 			break;
 		}
+	}*/
+
+	for (int i = 0; i < arraySize; ++i)
+	{
+		bool isSorted = true;
+
+		for (int j = 0; j < arraySize - 1 - i; ++j)
+		{
+			if (DataSet[j].score > DataSet[j + 1].score)
+			{
+				temp = DataSet[j + 1];
+				DataSet[j + 1] = DataSet[j];
+				DataSet[j] = temp;
+				isSorted = false;
+
+			}
+		}
+		if (isSorted == true)
+		{
+			break;
+		}
 	}
 
 
-	for (int i = 0; i < arraySize; i++) 
+	for (int i = 0; i < 10; ++i) 
 	{
-		printf("numbers[%d]: %d\n", i, DataSet[i]);
+		printf("Number: %d, Score: %3f\n", DataSet[i].number, DataSet[i].score);
+
+	}
+
+
+	for (int i = arraySize - 10; i < arraySize; ++i) 
+	{
+		printf("Number: %d, Score: %3f\n", DataSet[i].number, DataSet[i].score);
 	}
 
 }

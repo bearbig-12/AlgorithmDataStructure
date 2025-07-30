@@ -1,58 +1,86 @@
-#include <stdio.h>
-#include <stdbool.h>
+#include <stdio.h> 
+#include <string.h> 
+#include "Score.h"
 
 
-int main()
+//void InsertionSort(int DataSet[], int Length)
+//{
+//    int i = 0;
+//    int j = 0;
+//    int value = 0;
+//
+//    for (i = 1; i < Length; i++)
+//    {
+//        if (DataSet[i - 1] <= DataSet[i])
+//            continue;
+//
+//        value = DataSet[i];
+//
+//        for (j = 0; j < i; j++)
+//        {
+//            if (DataSet[j] > value)
+//            {
+//                memmove(&DataSet[j + 1], &DataSet[j], sizeof(DataSet[0]) * (i - j));
+//                DataSet[j] = value;
+//                break;
+//            }
+//        }
+//    }
+//}
+
+
+void InsertionSort(Score DataSet[], int Length)
 {
-	int DataSet[] = { 6, 4, 2, 3, 1, 5 };
-	int arraySize = sizeof(DataSet) / sizeof(int);
-	int temp = 0;
-	for (int i = 1; i < arraySize; ++i)
-	{
-		if (DataSet[temp] > DataSet[temp + 1])
-		{
-			break;
-		}
-		int key = DataSet[i];
-		int j;
-		for (j = i-1; j >= 0 && key < DataSet[j]; --j)
-		{
-			DataSet[j + 1] = DataSet[j];
-		}
-		DataSet[j + 1] = key;
-		temp = j + 1;
-	}
+    int i = 0;
+    int j = 0;
+    Score value;
 
+    for (i = 1; i < Length; i++)
+    {
+        if (DataSet[i - 1].score <= DataSet[i].score)
+            continue;
 
-	for (int i = 0; i < arraySize; i++)
-	{
-		printf("numbers[%d]: %d\n", i, DataSet[i]);
-	}
+        value = DataSet[i];
 
+        for (j = 0; j < i; j++)
+        {
+            if (DataSet[j].score > value.score)
+            {
+                memmove(&DataSet[j + 1], &DataSet[j], sizeof(DataSet[0]) * (i - j));
+                DataSet[j] = value;
+                break;
+            }
+        }
+    }
 }
 
-void InsertionSort(int DataSet[], int length)
+int main(void)
 {
-	int i = 0; 
-	int j = 0;
-	int value = 0;
+    //int DataSet[] = { 6, 4, 2, 3, 1, 5 };
+    int arraySize = sizeof DataSet / sizeof DataSet[0];
+    int i = 0;
+
+    InsertionSort(DataSet, arraySize);
+
+    //for (i = 0; i < Length; i++)
+    //{
+    //    printf("%d ", DataSet[i]);
+    //}
 
 
-	for (int i = 1; i < length; ++i)
-	{
-		if (DataSet[i - 1] <= DataSet[i])
-		{
-			continue;
-		}
+    for (int i = 0; i < 10; ++i)
+    {
+        printf("Number: %d, Score: %3f\n", DataSet[i].number, DataSet[i].score);
 
-		value = DataSet[i];
+    }
 
-		for (j = 0; j < i; ++j)
-		{
-			memmove(&DataSet[j + 1], &DataSet[j], sizeof(DataSet[0] * (i - j)));
-			DataSet[i] = value;
-			break;
-		}
-	}
+
+    for (int i = arraySize - 10; i < arraySize; ++i)
+    {
+        printf("Number: %d, Score: %3f\n", DataSet[i].number, DataSet[i].score);
+    }
+
+    printf("\n");
+
+    return 0;
 }
-

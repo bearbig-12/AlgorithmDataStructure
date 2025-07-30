@@ -125,6 +125,9 @@
   <ItemGroup>
     <ClCompile Include="InsertionSort.c" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Score.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
