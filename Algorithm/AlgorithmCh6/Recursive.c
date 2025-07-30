@@ -20,5 +20,5 @@ int main()
 {
 	int ret = factorial(5);
 	printf("5! = %d\n", ret);
-	
+
 }
