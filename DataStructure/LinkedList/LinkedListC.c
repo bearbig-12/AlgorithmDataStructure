@@ -9,10 +9,10 @@
 Node* CreateNode(LinkedList* list, const char* name, int hp)
 {
     Node* NewNode = (Node*)malloc(sizeof(Node));
-    //strcpy_s(NewNode->name, NAME_MAX_LEN, name);  // VSCODE에서는 해당 함수 지원안함
+    strcpy_s(NewNode->name, NAME_MAX_LEN, name);  // VSCODE에서는 해당 함수 지원안함
 
 
-    strncpy(NewNode->name, name, NAME_MAX_LEN - 1);
+    //strncpy(NewNode->name, name, NAME_MAX_LEN - 1);
     NewNode->name[NAME_MAX_LEN - 1] = '\0';
     NewNode->Hp = hp; 
     NewNode->pNext = NULL;
