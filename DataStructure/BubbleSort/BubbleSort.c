@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include "Score.h"
+#include <time.h>
 
 int main()
 {
@@ -8,6 +9,11 @@ int main()
 	//int arraySize = sizeof(DataSet) / sizeof(int);
 	int arraySize = sizeof(DataSet) / sizeof(DataSet[0]);
 	Score temp;
+
+	double startTime = 0.0, endTime = 0.0;
+
+
+	startTime = (double)clock() / CLOCKS_PER_SEC;
 
 	/*for (int i = 0; i < arraySize; ++i)
 	{
@@ -51,6 +57,8 @@ int main()
 		}
 	}
 
+	endTime = (double)clock() / CLOCKS_PER_SEC;
+
 
 	for (int i = 0; i < 10; ++i) 
 	{
@@ -63,6 +71,9 @@ int main()
 	{
 		printf("Number: %d, Score: %3f\n", DataSet[i].number, DataSet[i].score);
 	}
+
+	printf("\n");
+	printf("버블소트 3만개 데이타 소팅 시간: %lf sec\n", endTime - startTime);
 
 }
 
