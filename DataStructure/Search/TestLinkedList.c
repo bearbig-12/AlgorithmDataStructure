@@ -1,10 +1,10 @@
-#include "LinkedList.h"
+ï»¿#include "LinkedList.h"
 #include "Score.h"
 #include "ScoreData.h"
 
-// 1. ¼øÂ÷Å½»ö
-// ½Ì±Û¸µÅ©µå ¸®½ºÆ®¿¡ ÀúÀåµÈ 3¸¸°³ÀÇ µ¥ÀÌÅ¸ ¾È¿¡¼­ Target¸Å°³º¯¼ö¿¡ Àü´ŞµÈ °ªÀ» °¡Áø ³ëµå¸¦ Ã£°í
-// ÇØ´ç ³ëµåÀÇ ÁÖ¼Ò°ªÀ» Àü´ŞÇÑ´Ù.
+// 1. ìˆœì°¨íƒìƒ‰
+// ì‹±ê¸€ë§í¬ë“œ ë¦¬ìŠ¤íŠ¸ì— ì €ì¥ëœ 3ë§Œê°œì˜ ë°ì´íƒ€ ì•ˆì—ì„œ Targetë§¤ê°œë³€ìˆ˜ì— ì „ë‹¬ëœ ê°’ì„ ê°€ì§„ ë…¸ë“œë¥¼ ì°¾ê³ 
+// í•´ë‹¹ ë…¸ë“œì˜ ì£¼ì†Œê°’ì„ ì „ë‹¬í•œë‹¤.
 Node* SequentialSearch(Node* Head, double Target) {
 	Node* node = Head;
 	
@@ -24,8 +24,8 @@ Node* SequentialSearch(Node* Head, double Target) {
 }
 
 
-// 2. ÀüÁøÀÌµ¿¹ı
-// Target ¸Å°³º¯¼ö¿¡ Àü´ŞµÈ °ªÀ» °¡Áø ³ëµå¸¦ Ã£°í ÇØ´ç ³ëµå¸¦ ½Ì±Û¸µÅ©µå ¸®½ºÆ®ÀÇ ¸Ç¾ÕÀ¸·Î ÀÌµ¿½ÃÅ²´Ù(Çìµå³ëµå·Î ¸¸µé´Ù.)
+// 2. ì „ì§„ì´ë™ë²•
+// Target ë§¤ê°œë³€ìˆ˜ì— ì „ë‹¬ëœ ê°’ì„ ê°€ì§„ ë…¸ë“œë¥¼ ì°¾ê³  í•´ë‹¹ ë…¸ë“œë¥¼ ì‹±ê¸€ë§í¬ë“œ ë¦¬ìŠ¤íŠ¸ì˜ ë§¨ì•ìœ¼ë¡œ ì´ë™ì‹œí‚¨ë‹¤(í—¤ë“œë…¸ë“œë¡œ ë§Œë“¤ë‹¤.)
 Node* MoveToFront(Node** Head, double Target) {
 	Node* prev = NULL;
 	Node* node = *Head;
@@ -58,102 +58,196 @@ Node* MoveToFront(Node** Head, double Target) {
 	return NULL;
 }
 
-// 3. ÀüÀ§¹ı
-// Target ¸Å°³º¯¼ö¿¡ Àü´ŞµÈ °ªÀ» °¡Áø ³ëµå¸¦ Ã£°í ÇØ´ç ³ëµå¸¦ ½Ì±Û¸µÅ©µå ¸®½ºÆ®¿¡¼­
-// Ã£´Â ³ëµå¸¦ ÇÑÄ­ ¾ÕÂÊÀ¸·Î ÀÌµ¿½ÃÅ²´Ù.
+// 3. ì „ìœ„ë²•
+// Target ë§¤ê°œë³€ìˆ˜ì— ì „ë‹¬ëœ ê°’ì„ ê°€ì§„ ë…¸ë“œë¥¼ ì°¾ê³  í•´ë‹¹ ë…¸ë“œë¥¼ ì‹±ê¸€ë§í¬ë“œ ë¦¬ìŠ¤íŠ¸ì—ì„œ
+// ì°¾ëŠ” ë…¸ë“œë¥¼ í•œì¹¸ ì•ìª½ìœ¼ë¡œ ì´ë™ì‹œí‚¨ë‹¤.
 Node* Transpose(Node** Head, double Target) {
+	Node* prevPrev = NULL;
+	Node* prev = NULL;
+	Node* node = *Head;
+
+	if (*Head == NULL)
+	{
+		return NULL;
+	}
+	while (node != NULL)
+	{
+		if (node->Data.score == Target)
+		{
+			if (node == *Head)
+			{
+				return node;
+			}
+			// ì°¾ì€ ë…¸ë“œê°€ í—¤ë“œ ë‹¤ìŒ ë…¸ë“œ
+			if (prevPrev == NULL )
+			{
+				prev->NextNode = node->NextNode;
+				node->NextNode = *Head;
+				*Head = node;
+			}
+			// ê·¸ ì´í›„ë¶€í„°
+			else
+			{
+				prevPrev->NextNode = node;
+				prev->NextNode = node->NextNode;
+				node->NextNode = prev;
+				prev = node;
+			}
+			return node;
+		}
+		prevPrev = prev;
+		prev = node;
+		node = node->NextNode;
+	}
+
+
 	return NULL;
 }
 
 
-// 4. °è¼ö¹ı
-// Node¿¡ ºóµµ¼ö(Frequency)¸¦ ÀúÀåÇÏ´Â º¯¼ö¸¦ ¸¸µé°í
-// Target¿¡ Àü´ŞµÈ °ªÀ» °¡Áø ³ëµå¸¦ Ã£Àº ÈÄ ºóµµ¼ö¸¦ Áõ°¡½ÃÅ°°í
-// ºóµµ¼ö¿¡ Å©±â¸¦ ºñ±³ÇÏ¿© ÇØ´ç ³ëµå¸¦ À§Ä¡ ½ÃÅ²´Ù.
+// 4. ê³„ìˆ˜ë²•
+// Nodeì— ë¹ˆë„ìˆ˜(Frequency)ë¥¼ ì €ì¥í•˜ëŠ” ë³€ìˆ˜ë¥¼ ë§Œë“¤ê³ 
+// Targetì— ì „ë‹¬ëœ ê°’ì„ ê°€ì§„ ë…¸ë“œë¥¼ ì°¾ì€ í›„ ë¹ˆë„ìˆ˜ë¥¼ ì¦ê°€ì‹œí‚¤ê³ 
+// ë¹ˆë„ìˆ˜ì— í¬ê¸°ë¥¼ ë¹„êµí•˜ì—¬ í•´ë‹¹ ë…¸ë“œë¥¼ ìœ„ì¹˜ ì‹œí‚¨ë‹¤.
 Node* FrequencyMethod(Node** Head, double Target) {
-	return NULL;
+	Node* targetNode = *Head;
+	Node* targetNodePrev = NULL;
+
+	Node* node = *Head;
+	Node* nodePrev = NULL;
+
+	if (*Head == NULL)
+	{
+		return NULL;
+	}
+	while (targetNode != NULL)
+	{
+		if (targetNode->Data.score == Target)
+		{
+			targetNode->Frequency += 1;
+			break;
+		}
+		targetNodePrev = targetNode;
+		targetNode = targetNode->NextNode;
+	}
+
+	if (targetNode == NULL)
+	{
+		return NULL;
+	}
+
+	while (node != NULL)
+	{
+		if (node == targetNode)
+		{
+			break;
+		}
+		if (node->Frequency < targetNode->Frequency && targetNode != NULL)
+		{
+			
+			if (nodePrev == NULL && node != NULL)
+			{
+				targetNodePrev->NextNode = targetNode->NextNode;
+				targetNode->NextNode = node;
+				*Head = targetNode;
+			}
+			else			
+			{
+				targetNodePrev->NextNode = targetNode->NextNode;
+				nodePrev->NextNode = targetNode;
+				targetNode->NextNode = node;
+				targetNode = nodePrev;
+
+			}
+			break;
+			
+		}
+		nodePrev = node;
+		node = node->NextNode;
+	}
+	return targetNode;
 }
 
 int main(void)
 {
 	int   i = 0;
 	int   Count = 0;
-	Node* List = NULL;  // Çìµå³ëµåÁÖ¼Ò°ªÀ» ÀúÀå
+	Node* List = NULL;  // í—¤ë“œë…¸ë“œì£¼ì†Œê°’ì„ ì €ì¥
 	Node* Current = NULL;
 	Node* NewNode = NULL;
 
-	double InputValue = 0.0;	// Ã£´Â °ªÀ» ÀúÀåÇÏ´Â º¯¼ö
+	double InputValue = 0.0;	// ì°¾ëŠ” ê°’ì„ ì €ì¥í•˜ëŠ” ë³€ìˆ˜
 
-	int Length = sizeof(DataSet) / sizeof(Score);	// DataSet ¹è¿­¿ä¼ÒÀÇ °¹¼ö (30000°³)
+	int Length = sizeof(DataSet) / sizeof(Score);	// DataSet ë°°ì—´ìš”ì†Œì˜ ê°¯ìˆ˜ (30000ê°œ)
 
-	//  ³ëµå 30000°³ Ãß°¡ 
+	//  ë…¸ë“œ 30000ê°œ ì¶”ê°€ 
 	for (i = 0; i < Length; i++)
 	{
 		NewNode = CreateNode(DataSet[i]);
 		AppendNode(&List, NewNode);
 	}
 
-	// Ã£´Â °ªÀ» Ã£´Â ¹İº¹¿¬»ê
+	// ì°¾ëŠ” ê°’ì„ ì°¾ëŠ” ë°˜ë³µì—°ì‚°
 	while (1) {
-		printf("\nÃ£´Â score°ªÀ» ÀÔ·ÂÇÏ¼¼¿ä: ");
+		printf("\nì°¾ëŠ” scoreê°’ì„ ì…ë ¥í•˜ì„¸ìš”: ");
 		scanf_s("%lf", &InputValue);
 
 		if (InputValue <= 0.0) {
-			printf("Ã£´Â ÀÛ¾÷À» Áß´ÜÇÏ°í ÇÁ·Î±×·¥À» Á¾·áÇÕ´Ï´Ù.\n");
+			printf("ì°¾ëŠ” ì‘ì—…ì„ ì¤‘ë‹¨í•˜ê³  í”„ë¡œê·¸ë¨ì„ ì¢…ë£Œí•©ë‹ˆë‹¤.\n");
 			break;
 		}
 
-		Node* targetNode = MoveToFront(&List, InputValue);
+		Node* targetNode = FrequencyMethod(&List, InputValue);
 
-		if (targetNode != NULL) {	// Ã£´Â score°ªÀ» °¡Áø ³ëµå¸¦ Ã£Àº °æ¿ì
-			printf("MATCH!!!! searchValue  number: %d, score: %lf\n",
-				 targetNode->Data.number, targetNode->Data.score);
-		}
-		//if (targetNode != NULL) {	// Ã£´Â score°ªÀ» °¡Áø ³ëµå¸¦ Ã£Àº °æ¿ì
-		//	printf("MATCH!!!! searchValue Frequency: %d, number: %d, score: %lf\n",
-		//		targetNode->Frequency, targetNode->Data.number, targetNode->Data.score);
+		//if (targetNode != NULL) {	// ì°¾ëŠ” scoreê°’ì„ ê°€ì§„ ë…¸ë“œë¥¼ ì°¾ì€ ê²½ìš°
+		//	printf("MATCH!!!! searchValue  number: %d, score: %lf\n",
+		//		 targetNode->Data.number, targetNode->Data.score);
 		//}
-		else {	// Ã£´Â score°ªÀ» °¡Áø ³ëµå¸¦ ¸ø Ã£Àº °æ¿ì
-			printf("Ã£´Â °ªÀ» °¡Áø ³ëµå°¡ ¾øÀ½!!!!\n");
+		if (targetNode != NULL) {	// ì°¾ëŠ” scoreê°’ì„ ê°€ì§„ ë…¸ë“œë¥¼ ì°¾ì€ ê²½ìš°
+			printf("MATCH!!!! searchValue Frequency: %d, number: %d, score: %lf\n",
+				targetNode->Frequency, targetNode->Data.number, targetNode->Data.score);
+		}
+		else {	// ì°¾ëŠ” scoreê°’ì„ ê°€ì§„ ë…¸ë“œë¥¼ ëª» ì°¾ì€ ê²½ìš°
+			printf("ì°¾ëŠ” ê°’ì„ ê°€ì§„ ë…¸ë“œê°€ ì—†ìŒ!!!!\n");
 		}
 
-		// ¾Õ¿¡ 10°³
-		for (int i = 0; i < 10; i++) {
+		// ì•ì— 10ê°œ
+		/*for (int i = 0; i < 10; i++) {
 			Current = GetNodeAt(List, i);
 			printf("DataSet[%d] , Number: %d, Score: %.4lf\n",
 				i, Current->Data.number, Current->Data.score);
-		}
+		}*/
 
-		//// ¾Õ¿¡ 10°³
-		//for (int i = 0; i < 10; i++) {
-		//	Current = SLL_GetNodeAt(List, i);
-		//	printf("DataSet[%d] Frequency: %d, Number: %d, Score: %.4lf\n",
-		//		i, Current->Frequency, Current->Data.number, Current->Data.score);
-		//}
+		// ì•ì— 10ê°œ
+		for (int i = 0; i < 10; i++) {
+			Current = GetNodeAt(List, i);
+			printf("DataSet[%d] Frequency: %d, Number: %d, Score: %.4lf\n",
+				i, Current->Frequency, Current->Data.number, Current->Data.score);
+		}
 
 		printf("===============================================\n");
 
-		/*for (int i = Length - 10; i < Length; i++) {
-			Current = SLL_GetNodeAt(List, i);
+		for (int i = Length - 10; i < Length; i++) {
+			Current = GetNodeAt(List, i);
 			printf("DataSet[%d] Frequency: %d, Number: %d, Score: %.4lf\n",
 				i, Current->Frequency, Current->Data.number, Current->Data.score);
-		}*/
+		}
 
-		// ¾Õ¿¡ 10°³
-		for (int i = 0; i < 10; i++) {
+		// ë’¤ì— 10ê°œ
+		/*for (int i = Length-10; i < Length; i++) {
 			Current = GetNodeAt(List, i);
 			printf("DataSet[%d] , Number: %d, Score: %.4lf\n",
 				i,  Current->Data.number, Current->Data.score);
-		}
+		}*/
 
 	}
 
 
 
-	//  ¸ğµç ³ëµå¸¦ ¸Ş¸ğ¸®¿¡¼­ Á¦°Å     
+	//  ëª¨ë“  ë…¸ë“œë¥¼ ë©”ëª¨ë¦¬ì—ì„œ ì œê±°     
 	printf("\nDestroying List...\n");
 
-	for (i = 0; i < Count; i++)
+	for (i = 0; i < Length; i++)
 	{
 		Current = GetNodeAt(List, 0);
 

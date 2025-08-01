@@ -11,6 +11,7 @@ typedef struct tagNode
 {
     ElementType Data;
     struct tagNode* NextNode;
+    unsigned int Frequency;
 } Node;
 
 // 함수 원형 선언 
