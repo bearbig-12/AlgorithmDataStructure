@@ -57,6 +57,7 @@ Node* MoveToFront(Node** Head, double Target) {
 				current->PrevNode = NULL;
 
 				current->NextNode = *Head;
+				current->NextNode->PrevNode = current;
 
 				*Head = current;
 
@@ -67,7 +68,7 @@ Node* MoveToFront(Node** Head, double Target) {
 			current->NextNode->PrevNode = current->PrevNode;
 
 			current->NextNode = *Head;
-			current->PrevNode = NULL;
+			current->NextNode->PrevNode = current;
 
 
 
@@ -77,7 +78,7 @@ Node* MoveToFront(Node** Head, double Target) {
 		}
 		current = current->NextNode;
 	}
-
+	return NULL;
 }
 
 
@@ -86,6 +87,75 @@ Node* MoveToFront(Node** Head, double Target) {
 //한 칸 앞으로
 Node* Transpose(Node** Head, double Target)
 {
+	Node* current = *Head;
+
+	if (current == NULL)
+	{
+		return NULL;
+	}
+
+	while (current != NULL)
+	{
+		Node* temp = current;
+
+		if (current->Data.score == Target)
+		{
+			// 헤드
+			if (current == *Head)
+			{
+				return current;
+			}
+			// 헤드 앞
+			else if (current->PrevNode == *Head)
+			{
+				current->PrevNode->NextNode = current->NextNode;
+				current->NextNode->PrevNode = current->PrevNode;
+
+				current->NextNode = *Head;
+				current->NextNode->PrevNode = current;
+
+				current->PrevNode = NULL;
+				*Head = current;
+
+				return current;
+
+			}
+			// 테일
+			else if (current->NextNode == NULL)
+			{
+				Node* prev = current->PrevNode;
+
+				prev->NextNode = NULL;
+
+				prev->PrevNode->NextNode = current;
+				current->PrevNode = prev->PrevNode;
+
+
+				prev->PrevNode = current;
+				current->NextNode = prev;
+				return current;
+			}
+
+			Node* prev = current->PrevNode;
+
+			prev->NextNode = current->NextNode;
+			current->NextNode->PrevNode = prev;
+
+			prev->PrevNode->NextNode = current;
+			current->PrevNode = prev->PrevNode;
+
+
+			prev->PrevNode = current;
+			current->NextNode = prev;
+
+			return current;
+
+		}
+
+		
+
+		current = current->NextNode;
+	}
 	return NULL;
 
 }
@@ -135,7 +205,7 @@ int main(void)
 			break;
 		}
 
-		Node* targetNode = MoveToFront(&List, InputValue);
+		Node* targetNode = Transpose(&List, InputValue);
 
 		if (targetNode != NULL) {	//찾는 Score값을 가진 노드를 찾은 경우
 			printf("MATCH!!! searchValue: number:%d, score: %lf, Frequency: %d\n", targetNode->Data.number, targetNode->Data.score, targetNode->Frequency);
