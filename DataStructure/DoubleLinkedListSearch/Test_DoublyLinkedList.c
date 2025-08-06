@@ -165,8 +165,71 @@ Node* Transpose(Node** Head, double Target)
 //조회수(탐색횟수)에 따른 이동
 Node* FrequencyMethod(Node** Head, double Target)
 {
+	Node* current = *Head;
 
+	if (current == NULL)
+	{
+		return NULL;
+	}
 
+	while (current != NULL)
+	{
+
+		if (current->Data.score == Target)
+		{
+			current->Frequency++;
+			break;
+		}
+		current = current->NextNode;
+	}
+
+	Node* node = *Head;
+	if (current == NULL)
+	{
+		return NULL;
+	}
+	while (node != NULL)
+	{
+		if (current == *Head)
+		{
+			return current;
+		}
+		if (node->Frequency < current->Frequency )
+		{
+
+			//현재 노드를 리스트에서 분리
+			if (current->PrevNode != NULL) 
+			{
+				current->PrevNode->NextNode = current->NextNode;
+			}
+			if (current->NextNode != NULL)
+			{
+				current->NextNode->PrevNode = current->PrevNode;
+			}
+
+			// 헤드에 삽입
+
+			if (node == *Head)
+			{
+				current->PrevNode = NULL;
+				node->PrevNode = current;
+				current->NextNode = node;
+				*Head = current;
+				return current;
+			}
+			// 중간 삽입
+			else
+			{
+				current->NextNode = node;
+				current->PrevNode = node->PrevNode;
+				node->PrevNode->NextNode = current;
+				node->PrevNode = current;
+
+				return current;
+			}
+		}
+		node = node->NextNode;
+	}
 	return NULL;
 }
 
@@ -205,7 +268,7 @@ int main(void)
 			break;
 		}
 
-		Node* targetNode = Transpose(&List, InputValue);
+		Node* targetNode = FrequencyMethod(&List, InputValue);
 
 		if (targetNode != NULL) {	//찾는 Score값을 가진 노드를 찾은 경우
 			printf("MATCH!!! searchValue: number:%d, score: %lf, Frequency: %d\n", targetNode->Data.number, targetNode->Data.score, targetNode->Frequency);
