@@ -1,4 +1,4 @@
-#include <stdlib.h> 
+ï»¿#include <stdlib.h> 
 #include <stdio.h>
 #include "Point.h"
 #include <time.h>
@@ -56,9 +56,9 @@ int main(void)
     int Length = sizeof DataSet / sizeof DataSet[0];
     Point* found = NULL;
 
-    int countArray[1000] = { 0, };   // 1000¹ø Å½»ö È½¼ö¸¦ ÀúÀåÇÒ ¹è¿­
+    int countArray[1000] = { 0, };   // 1000ë²ˆ íƒìƒ‰ íšŸìˆ˜ë¥¼ ì €ì¥í•  ë°°ì—´
 
-    //  ±¸¸ÅÆ÷ÀÎÆ®¿¡ ´ëÇØ ¿À¸§Â÷¼øÀ¸·Î Á¤·Ä 
+    //  êµ¬ë§¤í¬ì¸íŠ¸ì— ëŒ€í•´ ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ì •ë ¬ 
     qsort((void*)DataSet, Length, sizeof(Point), ComparePoint);
 
     for (int i = 0; i < 1000; i++) {
@@ -78,7 +78,7 @@ int main(void)
         sum += countArray[i];
     }
 
-    printf("1000¹ø Å½»ö ÀÛ¾÷½Ã Æò±Õ ºñ±³ È½¼ö: sum = %d, average = %lf\n", sum, sum / (float)1000.0f);
+    printf("1000ë²ˆ íƒìƒ‰ ì‘ì—…ì‹œ í‰ê·  ë¹„êµ íšŸìˆ˜: sum = %d, average = %lf\n", sum, sum / (float)1000.0f);
 
 
 
