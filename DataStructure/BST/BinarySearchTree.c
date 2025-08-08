@@ -105,6 +105,8 @@ BSTNode* BST_RemoveNode( BSTNode* Tree,BSTNode* Parent, ElementType Target )
                 BSTNode* MinNode = BST_SearchMinNode( Tree->Right );
                 MinNode = BST_RemoveNode( Tree, NULL, MinNode->Data );
                 Tree->Data = MinNode->Data;
+
+                Removed = MinNode;
             }
             else
             {

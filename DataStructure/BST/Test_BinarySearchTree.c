@@ -42,9 +42,9 @@ int main( void )
     printf( "\n");
 
     //  특정 노드 삭제 
-    printf( "Removing 98...\n");
+    printf( "Removing 22...\n");
 
-    Node = BST_RemoveNode( Tree, NULL, 98 );
+    Node = BST_RemoveNode( Tree, NULL, 22 );
     BST_DestroyNode( Node );
 
     BST_InorderPrintTree( Tree );
