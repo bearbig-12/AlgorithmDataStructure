@@ -42,21 +42,74 @@ void  DestroyNode(Node* _Node)
 
 void Enqueue(LinkedQueue* Queue, Node* NewNode)
 {
-	if (Queue->mFront == NULL)
+	/*if (Queue->mFront == NULL)
 	{
 		Queue->mFront = NewNode;
 		Queue->mRear = NewNode;
 		Queue->mCount++;
-	}
-	if (NewNode->priority <= Queue->mFront->priority && Queue->mFront->mNextNode != NULL)
-	{
 	}
 	else
 	{
 		Queue->mRear->mNextNode = NewNode;
 		Queue->mRear = NewNode;
 		Queue->mCount++;
+	}*/
+	Node* current = Queue->mFront;
+	Node* previous = NULL;
+	if (Queue->mFront == NULL)
+	{
+		Queue->mFront = NewNode;
+		Queue->mRear = NewNode;
+		Queue->mCount++;
+		return;
 	}
+	else
+	{
+		while (current != NULL)
+		{
+			if (current->priority <= NewNode->priority)
+			{
+				// 헤드인 경우
+				if (previous == NULL)
+				{
+					NewNode->mNextNode = current;
+					Queue->mFront = NewNode;
+					Queue->mCount++;
+					return;
+
+				}
+				else
+				{
+ 					if (current->priority == NewNode->priority)
+					{
+						NewNode->mNextNode = current->mNextNode;
+						current->mNextNode = NewNode;
+						Queue->mCount++;
+						return;
+					}
+					else
+					{
+						previous->mNextNode = NewNode;
+						NewNode->mNextNode = current;
+						Queue->mCount++;
+						return;
+					}
+				
+
+				}
+			}
+			if (current == Queue->mRear && current->priority > NewNode->priority)
+			{
+				current->mNextNode = NewNode;
+				Queue->mRear = NewNode;
+				Queue->mCount++;
+				return;
+			}
+			previous = current;
+			current = current->mNextNode;
+		}
+	}
+	
 }
 
 Node* Dequeue(LinkedQueue* Queue)

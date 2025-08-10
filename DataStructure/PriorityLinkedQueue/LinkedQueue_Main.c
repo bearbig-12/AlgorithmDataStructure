@@ -11,11 +11,12 @@ int main(void)
 
     char Data[100]; // 문자열 입력 공간
     int priority = 0;
+
     while (1)
     {
         printf("우선 순위 큐에 저장할 데이터를 입력하세요 : ");
         scanf("%d, %s", &priority, Data);
-        
+
         if (priority <= -1) // 입력 중단
         {
             break;
@@ -28,7 +29,7 @@ int main(void)
 
         while (Current != NULL)
         {
-            printf("[Priority : %d, Data : %s\n]", Current->priority, Current->mData);
+            printf("[Priority : %d, Data : %s]\n", Current->priority, Current->mData);
 
             Current = Current->mNextNode;
         }
