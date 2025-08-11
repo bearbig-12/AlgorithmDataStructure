@@ -132,6 +132,59 @@ Node* Dequeue(LinkedQueue* Queue)
 	return Front;
 }
 
+Node* Dequeue2(LinkedQueue* Queue, int target)
+{
+	//  LQ_Dequeue() 함수가 반환할 최상위 노드 
+	Node* current = Queue->mFront;
+	Node* previous = NULL;
+	
+	while (current != NULL)
+	{
+		
+		// 타켓 노드 찾음
+		if (current->priority == target)
+		{
+			// 노드가 1개 밖에 없음
+			if (current == Queue->mFront && current->mNextNode == NULL)
+			{
+				Queue->mFront = NULL;
+				Queue->mRear = NULL;
+				Queue->mCount--;
+				return current;
+			}
+			// 뺄 노드가 Front
+			if (current == Queue->mFront)
+			{
+				Queue->mFront = current->mNextNode;
+				current->mNextNode = NULL;
+				Queue->mCount--;
+				return current;
+
+			}
+			// 뺄 노드가 Rear
+			else if (current == Queue->mRear)
+			{
+				Queue->mRear = previous;
+				previous->mNextNode = NULL;
+				Queue->mCount--;
+				return current;
+			}
+			else
+			{
+				previous->mNextNode = current->mNextNode;
+				current->mNextNode = NULL;
+				Queue->mCount--;
+				return current;
+			}
+
+		}
+		previous = current;
+		current = current->mNextNode;
+	}
+	// 못찾음
+	return NULL;
+}
+
 int IsEmpty(LinkedQueue* Queue)
 {
 	return (Queue->mFront == NULL);

@@ -28,6 +28,7 @@ void  DestroyNode(Node* _Node);
 
 void  Enqueue(LinkedQueue* Queue, Node* NewNode);
 Node* Dequeue(LinkedQueue* Queue);
+Node* Dequeue2(LinkedQueue* Queue, int target);
 
 int   IsEmpty(LinkedQueue* Queue);
 
