@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{479473d6-8ddb-4617-91bb-c4b95529391c}</ProjectGuid>
-    <RootNamespace>Graph02</RootNamespace>
+    <ProjectGuid>{dfd4aad6-25ea-4106-bcf2-1208185704a6}</ProjectGuid>
+    <RootNamespace>GraphTraversal</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -123,7 +123,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Matrix_Graph.c" />
+    <ClCompile Include="Graph.c" />
+    <ClCompile Include="GraphTraversal.c" />
+    <ClCompile Include="LinkedQueue.c" />
+    <ClCompile Include="Test_GraphTraversal.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Graph.h" />
+    <ClInclude Include="GraphTraversal.h" />
+    <ClInclude Include="LinkedQueue.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
