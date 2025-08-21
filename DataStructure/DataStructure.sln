@@ -63,6 +63,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Graph02", "Graph02\Graph02.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GraphTraversal", "GraphTraversal\GraphTraversal.vcxproj", "{DFD4AAD6-25EA-4106-BCF2-1208185704A6}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TopologicalSort", "TopologicalSort\TopologicalSort.vcxproj", "{603A8842-7678-460E-BA81-DC9E6DFD45B7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -311,6 +313,14 @@ Global
 		{DFD4AAD6-25EA-4106-BCF2-1208185704A6}.Release|x64.Build.0 = Release|x64
 		{DFD4AAD6-25EA-4106-BCF2-1208185704A6}.Release|x86.ActiveCfg = Release|Win32
 		{DFD4AAD6-25EA-4106-BCF2-1208185704A6}.Release|x86.Build.0 = Release|Win32
+		{603A8842-7678-460E-BA81-DC9E6DFD45B7}.Debug|x64.ActiveCfg = Debug|x64
+		{603A8842-7678-460E-BA81-DC9E6DFD45B7}.Debug|x64.Build.0 = Debug|x64
+		{603A8842-7678-460E-BA81-DC9E6DFD45B7}.Debug|x86.ActiveCfg = Debug|Win32
+		{603A8842-7678-460E-BA81-DC9E6DFD45B7}.Debug|x86.Build.0 = Debug|Win32
+		{603A8842-7678-460E-BA81-DC9E6DFD45B7}.Release|x64.ActiveCfg = Release|x64
+		{603A8842-7678-460E-BA81-DC9E6DFD45B7}.Release|x64.Build.0 = Release|x64
+		{603A8842-7678-460E-BA81-DC9E6DFD45B7}.Release|x86.ActiveCfg = Release|Win32
+		{603A8842-7678-460E-BA81-DC9E6DFD45B7}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
