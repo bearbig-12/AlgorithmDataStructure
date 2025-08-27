@@ -67,6 +67,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TopologicalSort", "Topologi
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MinimumSpanningTree", "MinimumSpanningTree\MinimumSpanningTree.vcxproj", "{F7789E77-5BB8-467A-9CA5-C274DE5D94B0}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GraphDijkstra", "GraphDijkstra\GraphDijkstra.vcxproj", "{2F90D416-7F94-44AB-9288-F54CD3141531}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StringSearch", "StringSearch\StringSearch.vcxproj", "{AF6C5DE3-E8EF-4315-B141-AF60A6595617}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -331,6 +335,22 @@ Global
 		{F7789E77-5BB8-467A-9CA5-C274DE5D94B0}.Release|x64.Build.0 = Release|x64
 		{F7789E77-5BB8-467A-9CA5-C274DE5D94B0}.Release|x86.ActiveCfg = Release|Win32
 		{F7789E77-5BB8-467A-9CA5-C274DE5D94B0}.Release|x86.Build.0 = Release|Win32
+		{2F90D416-7F94-44AB-9288-F54CD3141531}.Debug|x64.ActiveCfg = Debug|x64
+		{2F90D416-7F94-44AB-9288-F54CD3141531}.Debug|x64.Build.0 = Debug|x64
+		{2F90D416-7F94-44AB-9288-F54CD3141531}.Debug|x86.ActiveCfg = Debug|Win32
+		{2F90D416-7F94-44AB-9288-F54CD3141531}.Debug|x86.Build.0 = Debug|Win32
+		{2F90D416-7F94-44AB-9288-F54CD3141531}.Release|x64.ActiveCfg = Release|x64
+		{2F90D416-7F94-44AB-9288-F54CD3141531}.Release|x64.Build.0 = Release|x64
+		{2F90D416-7F94-44AB-9288-F54CD3141531}.Release|x86.ActiveCfg = Release|Win32
+		{2F90D416-7F94-44AB-9288-F54CD3141531}.Release|x86.Build.0 = Release|Win32
+		{AF6C5DE3-E8EF-4315-B141-AF60A6595617}.Debug|x64.ActiveCfg = Debug|x64
+		{AF6C5DE3-E8EF-4315-B141-AF60A6595617}.Debug|x64.Build.0 = Debug|x64
+		{AF6C5DE3-E8EF-4315-B141-AF60A6595617}.Debug|x86.ActiveCfg = Debug|Win32
+		{AF6C5DE3-E8EF-4315-B141-AF60A6595617}.Debug|x86.Build.0 = Debug|Win32
+		{AF6C5DE3-E8EF-4315-B141-AF60A6595617}.Release|x64.ActiveCfg = Release|x64
+		{AF6C5DE3-E8EF-4315-B141-AF60A6595617}.Release|x64.Build.0 = Release|x64
+		{AF6C5DE3-E8EF-4315-B141-AF60A6595617}.Release|x86.ActiveCfg = Release|Win32
+		{AF6C5DE3-E8EF-4315-B141-AF60A6595617}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
