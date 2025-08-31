@@ -71,6 +71,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GraphDijkstra", "GraphDijks
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StringSearch", "StringSearch\StringSearch.vcxproj", "{AF6C5DE3-E8EF-4315-B141-AF60A6595617}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "KarpRabinAlogorithm", "KarpRabinAlogorithm\KarpRabinAlogorithm.vcxproj", "{C1C7ACFB-5163-4FF0-AB29-10B473CBC377}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -351,6 +353,14 @@ Global
 		{AF6C5DE3-E8EF-4315-B141-AF60A6595617}.Release|x64.Build.0 = Release|x64
 		{AF6C5DE3-E8EF-4315-B141-AF60A6595617}.Release|x86.ActiveCfg = Release|Win32
 		{AF6C5DE3-E8EF-4315-B141-AF60A6595617}.Release|x86.Build.0 = Release|Win32
+		{C1C7ACFB-5163-4FF0-AB29-10B473CBC377}.Debug|x64.ActiveCfg = Debug|x64
+		{C1C7ACFB-5163-4FF0-AB29-10B473CBC377}.Debug|x64.Build.0 = Debug|x64
+		{C1C7ACFB-5163-4FF0-AB29-10B473CBC377}.Debug|x86.ActiveCfg = Debug|Win32
+		{C1C7ACFB-5163-4FF0-AB29-10B473CBC377}.Debug|x86.Build.0 = Debug|Win32
+		{C1C7ACFB-5163-4FF0-AB29-10B473CBC377}.Release|x64.ActiveCfg = Release|x64
+		{C1C7ACFB-5163-4FF0-AB29-10B473CBC377}.Release|x64.Build.0 = Release|x64
+		{C1C7ACFB-5163-4FF0-AB29-10B473CBC377}.Release|x86.ActiveCfg = Release|Win32
+		{C1C7ACFB-5163-4FF0-AB29-10B473CBC377}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
